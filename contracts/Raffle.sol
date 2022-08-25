@@ -16,7 +16,7 @@ error Raffle_UpkeepNotNeeded(uint256 currentBalance, uint256 numPlayers, uint256
  * @notice This contract is for creating an untamperable decentralized lottery smart contract
  * @dev This contract implements Chainlink VRF V2 and Chainlink Keepers
  */
-abstract contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
+contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
     /* Type Declerations*/
     enum RaffleState {
         OPEN,
@@ -37,7 +37,7 @@ abstract contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
     address private s_recentWinner;
     RaffleState private s_raffleState;
     uint256 private s_lastTimeStamp;
-    uint256 private i_interval;
+    uint256 private immutable i_interval;
 
     /* Events*/
     event RaffleEnter(address indexed player);
