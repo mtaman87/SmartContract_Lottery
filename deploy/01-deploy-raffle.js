@@ -1,6 +1,6 @@
 const { getNamedAccounts, deployments, network, ethers } = require("hardhat")
 const { developmentChains, networkConfig } = require("../helper-hardhat-config")
-const { verify } = require("../helper-hardhat-config")
+const { verify } = require("../utils/verify")
 
 const VRF_SUB_FUND_AMOUNT = ethers.utils.parseEther("2")
 
@@ -33,7 +33,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
         gasLane,
         subscriptionId,
         callbackGasLimit,
-        interval
+        interval,
     ]
 
     const raffle = await deploy("Raffle", {
@@ -45,7 +45,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
 
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
         log("Veryfing...")
-        await verify(raffle.address, args)
+        await verify(raffle.address, arguments)
 
         log("-----------------------------------------")
     }

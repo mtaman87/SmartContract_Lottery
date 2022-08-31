@@ -25,7 +25,13 @@ module.exports = {
             chainId: 4,
             blockConfirmations: 6,
             url: RINKEBY_RPC_URL,
-            accounts: [PRIVATE_KEY],
+            saveDeployments: true,
+            accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+        },
+    },
+    etherscan: {
+        apiKey: {
+            rinkeby: ETHERSCAN_API_KEY,
         },
     },
     gasReporter: {
